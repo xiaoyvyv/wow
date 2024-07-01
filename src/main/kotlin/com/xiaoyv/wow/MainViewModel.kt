@@ -2,13 +2,17 @@
 
 package com.xiaoyv.wow
 
-import androidx.compose.ui.res.useResource
 import com.xiaoyv.wow.kts.*
+import io.github.mymonstercat.Model
+import io.github.mymonstercat.ocr.InferenceEngine
+import io.github.mymonstercat.ocr.config.ParamConfig
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import java.awt.Robot
-import java.io.File
+import java.util.logging.Level
 import kotlin.concurrent.thread
 
 class MainViewModel {
@@ -28,6 +32,14 @@ class MainViewModel {
      * Robot 类
      */
     private val robot by lazy { Robot() }
+
+    /**
+     * OCR
+     */
+    private val ocrParamConfig = ParamConfig.getDefaultConfig().apply {
+        isDoAngle = true
+        isMostAngle = true
+    }
 
     /**
      * 开关暂离状态
@@ -57,12 +69,14 @@ class MainViewModel {
             _heartBeatJob = GlobalScope.launch {
                 withContext(Dispatchers.IO) {
                     while (isActive) {
-                        runCatching { onSuspendHeartBeat() }.onFailure { it.printStackTrace() }
+                        runCatching { onSuspendHeartBeat() }
+                            .onFailure { log(it.stackTraceToString()) }
                     }
                 }
             }
         }
     }
+
 
     /**
      * 暂离挂机心跳执行逻辑
@@ -70,111 +84,76 @@ class MainViewModel {
     private suspend fun onSuspendHeartBeat() {
         val desktopCapture = robot.createDesktopCapture()
 
-        // 进入游戏界面
-        val enterGameBtnRect = findImage(desktopCapture, getCharacter("enter-game-btn.png"))
-        if (enterGameBtnRect != null) {
-            println("检测到进入游戏界面，自动点击【进入魔兽世界】")
+        // OCR
+        val engine = InferenceEngine.getInstance(Model.ONNX_PPOCR_V4)
+        val result = engine.runOcr(desktopCapture.absolutePath, ocrParamConfig)
+        val textBlocks = result.textBlocks
 
-            robot.click(enterGameBtnRect)
+        // 进入魔兽世界
+        textBlocks.findTextBlock("进入魔兽世界")?.let { textBlock ->
+            log("检测到进入游戏界面，自动点击【进入魔兽世界】")
+            robot.click(textBlock)
         }
 
-        // 掉线了界面
-        val disconnectRect = findImage(desktopCapture, getCharacter("disconnect.jpg"))
-        if (disconnectRect != null) {
-            println("掉线了界面，自动点击【确定】")
+        // 重新连接
+        textBlocks.findTextBlock("重新连接")?.let { textBlock ->
+            if (textBlocks.findTextBlock("断开连接") != null || textBlocks.findTextBlock("服务器断开") != null) {
+                log("断开连接弹窗，自动点击【确定】")
+                robot.click(textBlocks.findTextBlock("确定"))
+            }
 
-            robot.click(disconnectRect, verBias = 0.6f)
-        }
+            if (textBlocks.findTextBlock("无法重新连接") != null) {
+                log("无法重新连接弹窗，自动点击【确定】")
+                robot.click(textBlocks.findTextBlock("确定"))
+                return@let
+            }
 
-        // 重新连接界面
-        val reconnectBtnRect = findImage(desktopCapture, getCharacter("reconnect-btn.png"))
-        if (reconnectBtnRect != null) {
-            println("重新连接界面，自动点击【重新连接】")
-
-            robot.click(reconnectBtnRect)
-        }
-
-        // 重新连接错误界面
-        val reconnectErrorRect = findImage(desktopCapture, getCharacter("reconnect-error.png"))
-        if (reconnectErrorRect != null) {
-            println("重新连接错误界面，自动点击【确定】")
-
-            robot.click(reconnectErrorRect, verBias = 0.6f)
+            log("重新连接界面，自动点击【重新连接】")
+            robot.click(textBlock)
         }
 
         // 登录状态丢失界面
-        val loginForm = findImage(desktopCapture, getCharacter("login-form.png"))
-        if (loginForm != null) {
-            println("登录状态丢失界面")
+        if (textBlocks.findTextBlock("登录") != null || textBlocks.findTextBlock("密码") != null) {
+            log("登录状态丢失，自动点击【退出】")
+            robot.click(textBlocks.findTextBlock("退出"))
 
-            val exitBtn = findImage(desktopCapture, getCharacter("exit-btn.png"))
-            if (exitBtn != null) {
-                println("登录状态丢失，自动点击【退出】")
-                robot.click(exitBtn)
+            delay(2000)
 
-                delay(2000)
-
-                findWindow("战网").maxWindow()
-                findWindow("战网").activeWindow()
-            }
+            findWindow("战网").maxWindow()
+            findWindow("战网").activeWindow()
         }
 
         // 排队界面
-        val queueRect = findImage(desktopCapture, getCharacter("queue.png"))
-        if (queueRect != null) {
-            println("排队界面...")
+        textBlocks.findTextBlock("队列位置")?.let {
+            log("排队中...")
         }
 
         // 服务器列页面
-        val targetServer = findImage(desktopCapture, getCharacter("server-target.png"))
-        if (targetServer != null) {
-            println("自动进入目标服务器")
+        textBlocks.findTextBlock("吉安娜")?.let { textBlock ->
+            log("自动进入目标服务器【吉安娜】")
 
-            robot.click(targetServer)
-            robot.click(targetServer)
+            robot.click(textBlock)
+            robot.click(textBlock)
         }
 
         // 自动重新启动游戏
-        val startBattleGame = findImage(desktopCapture, getCharacter("start-battle-game.png"))
-        if (startBattleGame != null) {
-            println("自动重新启动游戏")
+        textBlocks.findTextBlock("进入游戏")?.let { textBlock ->
+            log("自动从战网客户端重新启动游戏")
 
             findWindow("战网").activeWindow()
 
-            robot.click(startBattleGame)
-            robot.click(startBattleGame)
+            robot.click(textBlock)
+            robot.click(textBlock)
 
             findWindow("战网").minWindow()
         }
     }
 
-    private fun getCharacter(fileName: String): File {
-        val target = File(dataDirOf("character"), fileName)
-        if (target.exists()) return target
-
-        return useResource("images/character/$fileName") {
-            target.also { file ->
-                file.outputStream().use { out ->
-                    it.copyTo(out)
-                }
-            }
-        }
-    }
-
-    private fun println(string: String) {
+    private fun log(string: String) {
         _logText.value = _logText.value + "\n" + string
     }
 
     fun screenShots() {
         thread { robot.createDesktopCapture() }
-    }
-
-    fun matchImage() {
-        val file = File("C:\\Users\\why\\IdeaProjects\\WowTool\\data\\screen\\dis.jpg")
-        val rect = findImage(
-            source = file,
-            target = File("C:\\Users\\why\\IdeaProjects\\WowTool\\src\\main\\resources\\images\\disconnect.jpg")
-        )
-        drawImageRect(file.absolutePath, rect)
     }
 }

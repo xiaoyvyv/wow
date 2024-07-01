@@ -1,6 +1,6 @@
 package com.xiaoyv.wow.kts
 
-import org.bytedeco.opencv.opencv_core.Rect
+import com.benjaminwan.ocrlibrary.TextBlock
 import java.awt.Rectangle
 import java.awt.Robot
 import java.awt.Toolkit
@@ -19,12 +19,17 @@ fun Robot.createDesktopCapture(): File {
     return captureImage
 }
 
+fun Robot.click(textBlock: TextBlock?) {
+    textBlock ?: return
+
+}
+
 /**
  * 点击坐标
  */
-fun Robot.click(box: Rect, horBias: Float = 0.5f, verBias: Float = 0.5f) {
-    val centerX = box.x() + box.width() * horBias
-    val centerY = box.y() + box.height() * verBias
+fun Robot.click(box: Rectangle, horBias: Float = 0.5f, verBias: Float = 0.5f) {
+    val centerX = box.x + box.width * horBias
+    val centerY = box.y + box.height * verBias
 
     mouseMove(centerX.roundToInt(), centerY.roundToInt())
     mousePress(InputEvent.BUTTON1_DOWN_MASK)

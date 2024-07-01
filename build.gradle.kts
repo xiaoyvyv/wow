@@ -26,15 +26,13 @@ dependencies {
     // With compose.desktop.common you will also lose @Preview functionality
     implementation(compose.desktop.currentOs)
 
-//    implementation("org.bytedeco:javacv:1.5.10")
-
-    // implementation("org.bytedeco:opencv-platform:4.9.0-1.5.10")
-//    implementation("org.bytedeco:openblas:0.3.26-1.5.10:windows-x86_64")
-//    implementation("org.bytedeco:opencv:4.9.0-1.5.10:windows-x86_64")
-
     implementation("com.github.kwhat:jnativehook:2.2.1")
     implementation("org.jsoup:jsoup:1.15.3")
     implementation("net.java.dev.jna:jna-platform:5.14.0")
+
+    implementation("io.github.mymonstercat:rapidocr:0.0.7")
+    implementation("io.github.mymonstercat:rapidocr-onnx-platform:0.0.7")
+    implementation("org.slf4j:slf4j-nop:2.0.3")
 }
 
 compose.desktop {
@@ -43,9 +41,7 @@ compose.desktop {
         jvmArgs += "-Dfile.encoding=UTF-8"
 
         nativeDistributions {
-            // targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-
-            targetFormats(TargetFormat.Msi)
+            targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
             packageName = "WowTool"
             packageVersion = "1.0.0"
         }
