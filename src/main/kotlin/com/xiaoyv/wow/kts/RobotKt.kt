@@ -19,9 +19,12 @@ fun Robot.createDesktopCapture(): File {
     return captureImage
 }
 
+/**
+ * 点击文字块
+ */
 fun Robot.click(textBlock: TextBlock?) {
     textBlock ?: return
-
+    click(textBlock.boxPoint.calcRectangle())
 }
 
 /**

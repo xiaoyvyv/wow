@@ -23,7 +23,7 @@ fun ArrayList<TextBlock>.findTextBlock(text: String): TextBlock? {
  *
  * 根据传入的4个坐标点，得出矩形框的左上角及长宽
  */
-private fun List<Point>.calcRectangle(): Rectangle {
+fun List<Point>.calcRectangle(): Rectangle {
     var minX = Int.MAX_VALUE
     var minY = Int.MAX_VALUE
     var maxX = Int.MIN_VALUE
