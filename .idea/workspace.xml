@@ -131,7 +131,7 @@
       <command value="gradle run" />
     </option>
   </component>
-  <component name="RunManager" selected="Kotlin.DesktopApp">
+  <component name="RunManager" selected="Gradle.wow [packageMsi]">
     <configuration default="true" type="lua.app" factoryName="Lua Application">
       <option name="program" value="/opt/homebrew/bin/lua" />
       <option name="file" value="" />
@@ -201,8 +201,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Kotlin.DesktopApp" />
         <item itemvalue="Gradle.wow [packageMsi]" />
+        <item itemvalue="Kotlin.DesktopApp" />
         <item itemvalue="Gradle.wow [packageDistributionForCurrentOS]" />
       </list>
     </recent_temporary>
