@@ -1,6 +1,8 @@
 @file:Suppress("SpellCheckingInspection")
 
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+import org.jetbrains.kotlin.config.JvmTarget
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm")
@@ -10,6 +12,20 @@ plugins {
 
 group = "com.xiaoyv"
 version = "1.1"
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+allprojects {
+    tasks.withType<KotlinCompile>().configureEach {
+        kotlinOptions {
+            jvmTarget = "1.8"
+        }
+    }
+}
+
 
 repositories {
     maven("https://maven.aliyun.com/repository/public/")
@@ -30,9 +46,12 @@ dependencies {
     implementation("org.jsoup:jsoup:1.15.3")
     implementation("net.java.dev.jna:jna-platform:5.14.0")
 
-    implementation("io.github.mymonstercat:rapidocr:0.0.7")
-    implementation("io.github.mymonstercat:rapidocr-onnx-platform:0.0.7")
+    implementation("io.github.mymonstercat:rapidocr:+")
+    implementation("io.github.mymonstercat:rapidocr-onnx-windows-x86_64:+")
+    implementation("io.github.mymonstercat:rapidocr-onnx-windows-x86:+")
+    implementation("io.github.mymonstercat:rapidocr-onnx-macosx-arm64:+")
     implementation("org.slf4j:slf4j-nop:2.0.3")
+//    implementation ("ch.qos.logback:logback-classic:1.4.12")
 }
 
 compose.desktop {
@@ -43,7 +62,7 @@ compose.desktop {
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
             packageName = "WowTool"
-            packageVersion = "1.0.0"
+            packageVersion = "1.0.1"
         }
     }
 }

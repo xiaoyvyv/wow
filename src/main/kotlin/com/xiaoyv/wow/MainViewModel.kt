@@ -142,12 +142,10 @@ class MainViewModel {
         textBlocks.findTextBlock("进入游戏")?.let { textBlock ->
             log("自动从战网客户端重新启动游戏")
 
-            findWindow("战网").activeWindow()
-
             robot.click(textBlock)
             robot.click(textBlock)
 
-            findWindow("战网").minWindow()
+            delay(5000)
         }
     }
 
