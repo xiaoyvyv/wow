@@ -18,8 +18,8 @@ fun main() = application {
     val keyListener = remember { KeyCombinationListener() }
 
     LaunchedEffect(Unit) {
-//        GlobalScreen.registerNativeHook()
-//        GlobalScreen.addNativeKeyListener(keyListener)
+        GlobalScreen.registerNativeHook()
+        GlobalScreen.addNativeKeyListener(keyListener)
     }
 
     Window(
