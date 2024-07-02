@@ -48,37 +48,39 @@ fun MainContent(keyListener: KeyCombinationListener) {
         }
     }
 
+    LaunchedEffect(Unit) {
+        keyListener.addCtrlAltPressedListener(object : OnCtrlAltPressedListener {
+            override fun onCtrlAltPressed(keyEvent: NativeKeyEvent) {
+                when (keyEvent.keyCode) {
+                    // 开关暂离功能
+                    NativeKeyEvent.VC_1 -> {
+                        Toolkit.getDefaultToolkit().beep()
+                        System.err.println("toggle")
+                        viewModel.toggleSuspendState()
+                    }
+                    // 截屏功能
+                    NativeKeyEvent.VC_2 -> {
+                        Toolkit.getDefaultToolkit().beep()
+                        viewModel.screenShots()
+                    }
 
-    keyListener.addCtrlAltPressedListener(object : OnCtrlAltPressedListener {
-        override fun onCtrlAltPressed(keyEvent: NativeKeyEvent) {
-            when (keyEvent.keyCode) {
-                // 开关暂离功能
-                NativeKeyEvent.VC_1 -> {
-                    Toolkit.getDefaultToolkit().beep()
-                    viewModel.toggleSuspendState()
-                }
-                // 截屏功能
-                NativeKeyEvent.VC_2 -> {
-                    Toolkit.getDefaultToolkit().beep()
-                    viewModel.screenShots()
-                }
+                    NativeKeyEvent.VC_3 -> {
+                        Toolkit.getDefaultToolkit().beep()
+                        findWindow("魔兽世界").maxWindow()
+                    }
 
-                NativeKeyEvent.VC_3 -> {
-                    Toolkit.getDefaultToolkit().beep()
-                    findWindow("魔兽世界").maxWindow()
+                    NativeKeyEvent.VC_4 -> System.err.println("Ctrl + Alt + 4 Pressed")
+                    NativeKeyEvent.VC_5 -> System.err.println("Ctrl + Alt + 5 Pressed")
+                    NativeKeyEvent.VC_6 -> System.err.println("Ctrl + Alt + 6 Pressed")
+                    NativeKeyEvent.VC_7 -> System.err.println("Ctrl + Alt + 7 Pressed")
+                    NativeKeyEvent.VC_8 -> System.err.println("Ctrl + Alt + 8 Pressed")
+                    NativeKeyEvent.VC_9 -> System.err.println("Ctrl + Alt + 9 Pressed")
+                    NativeKeyEvent.VC_0 -> System.err.println("Ctrl + Alt + 0 Pressed")
+                    else -> {}
                 }
-
-                NativeKeyEvent.VC_4 -> System.err.println("Ctrl + Alt + 4 Pressed")
-                NativeKeyEvent.VC_5 -> System.err.println("Ctrl + Alt + 5 Pressed")
-                NativeKeyEvent.VC_6 -> System.err.println("Ctrl + Alt + 6 Pressed")
-                NativeKeyEvent.VC_7 -> System.err.println("Ctrl + Alt + 7 Pressed")
-                NativeKeyEvent.VC_8 -> System.err.println("Ctrl + Alt + 8 Pressed")
-                NativeKeyEvent.VC_9 -> System.err.println("Ctrl + Alt + 9 Pressed")
-                NativeKeyEvent.VC_0 -> System.err.println("Ctrl + Alt + 0 Pressed")
-                else -> {}
             }
-        }
-    })
+        })
+    }
 
     MaterialTheme {
         Scaffold(
