@@ -48,10 +48,8 @@ dependencies {
 
     implementation("io.github.mymonstercat:rapidocr:+")
     implementation("io.github.mymonstercat:rapidocr-onnx-windows-x86_64:+")
-    implementation("io.github.mymonstercat:rapidocr-onnx-windows-x86:+")
     implementation("io.github.mymonstercat:rapidocr-onnx-macosx-arm64:+")
     implementation("org.slf4j:slf4j-nop:2.0.3")
-//    implementation ("ch.qos.logback:logback-classic:1.4.12")
 }
 
 compose.desktop {
