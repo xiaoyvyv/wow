@@ -68,7 +68,8 @@ fun MainContent(keyListener: KeyCombinationListener) {
                 NativeKeyEvent.VC_3 -> {
                     Toolkit.getDefaultToolkit().beep()
 
-                    findWindow("战网").maxWindow()
+//                    findWindow("战网").maxWindow()
+                    findWindow("魔兽世界").maxWindow()
                 }
 
                 NativeKeyEvent.VC_4 -> System.err.println("Ctrl + Alt + 4 Pressed")

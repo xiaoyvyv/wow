@@ -13,8 +13,24 @@ val TextBlock?.rect: Rectangle?
  * @author why
  * @since 7/1/24
  */
-fun ArrayList<TextBlock>.findTextBlock(text: String): TextBlock? {
+fun List<TextBlock>.findTextBlock(text: String): TextBlock? {
     return find { it.text.orEmpty().contains(text) }
+}
+
+/**
+ * OcrKt
+ *
+ * @author why
+ * @since 7/1/24
+ */
+fun List<TextBlock>.hasAllTextBlocks(vararg texts: String): Boolean {
+    var result = true
+    texts.forEach {
+        if (findTextBlock(it) == null) {
+            result = false
+        }
+    }
+    return result
 }
 
 

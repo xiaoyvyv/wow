@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0b09ccb7-ddc9-4f9c-a070-dc5dec3de88d" name="Changes" comment="[Feat] 点击文字块">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/logback.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="0b09ccb7-ddc9-4f9c-a070-dc5dec3de88d" name="Changes" comment="[Feat] 提交">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/xiaoyv/wow/MainViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/xiaoyv/wow/MainViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/xiaoyv/wow/kts/WindowKts.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/xiaoyv/wow/kts/WindowKts.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,29 +65,32 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "xiaoyvyv"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;xiaoyvyv&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/xiaoyvyv/wow.git",
-    "accountId": "f7ebccb2-0b74-401c-a807-eb43ec1aa53e"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/xiaoyvyv/wow.git&quot;,
+    &quot;accountId&quot;: &quot;f7ebccb2-0b74-401c-a807-eb43ec1aa53e&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
 }</component>
   <component name="ProjectId" id="2idthQoK4LRRAYnaISi9PE6IZFT" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "Gradle.Build WowTool.executor": "Run",
     "Gradle.Build wow.executor": "Run",
     "Gradle.WowTool [run].executor": "Run",
@@ -99,6 +98,8 @@
     "Gradle.wow [packageReleaseMsi].executor": "Run",
     "Kotlin.DesktopApp.executor": "Run",
     "Kotlin.MainKt.executor": "Run",
+    "Kotlin.WindowScreenshot.executor": "Run",
+    "Kotlin.WindowScreenshotKt.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "dart.analysis.tool.window.visible": "false",
     "git-widget-placeholder": "tool",
@@ -113,6 +114,7 @@
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "http.proxy",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -126,7 +128,7 @@
       <command value="gradle run" />
     </option>
   </component>
-  <component name="RunManager" selected="Gradle.wow [packageMsi]">
+  <component name="RunManager" selected="Kotlin.DesktopApp">
     <configuration default="true" type="lua.app" factoryName="Lua Application">
       <option name="program" value="/opt/homebrew/bin/lua" />
       <option name="file" value="" />
@@ -189,10 +191,24 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="WindowScreenshotKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.xiaoyv.wow.kts.WindowScreenshotKt" />
+      <module name="WowTool.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Gradle.wow [packageMsi]" />
+      <item itemvalue="Gradle.wow [packageReleaseMsi]" />
+      <item itemvalue="Kotlin.WindowScreenshotKt" />
+      <item itemvalue="Kotlin.DesktopApp" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.wow [packageMsi]" />
         <item itemvalue="Kotlin.DesktopApp" />
+        <item itemvalue="Kotlin.WindowScreenshotKt" />
+        <item itemvalue="Gradle.wow [packageMsi]" />
         <item itemvalue="Gradle.wow [packageReleaseMsi]" />
       </list>
     </recent_temporary>
@@ -216,6 +232,8 @@
       <workItem from="1719832401855" duration="6791000" />
       <workItem from="1719910831288" duration="56000" />
       <workItem from="1719910895058" duration="4805000" />
+      <workItem from="1719925879421" duration="2974000" />
+      <workItem from="1719929247765" duration="4743000" />
     </task>
     <task id="LOCAL-00001" summary="[Feat] 使用 OCR 方式">
       <option name="closed" value="true" />
@@ -233,15 +251,25 @@
       <option name="project" value="LOCAL" />
       <updated>1719835200781</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="[Feat] 提交">
+      <option name="closed" value="true" />
+      <created>1719933822380</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1719933822380</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="[Feat] 使用 OCR 方式" />
     <MESSAGE value="[Feat] 点击文字块" />
-    <option name="LAST_COMMIT_MESSAGE" value="[Feat] 点击文字块" />
+    <MESSAGE value="[Feat] 提交" />
+    <option name="LAST_COMMIT_MESSAGE" value="[Feat] 提交" />
   </component>
 </project>

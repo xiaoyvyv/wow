@@ -9,10 +9,7 @@ import io.github.mymonstercat.ocr.config.ParamConfig
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
 import java.awt.Robot
-import java.util.logging.Level
 import kotlin.concurrent.thread
 
 class MainViewModel {
@@ -70,7 +67,10 @@ class MainViewModel {
                 withContext(Dispatchers.IO) {
                     while (isActive) {
                         runCatching { onSuspendHeartBeat() }
-                            .onFailure { log(it.stackTraceToString()) }
+                            .onFailure {
+                                it.printStackTrace()
+                                log(it.stackTraceToString())
+                            }
                     }
                 }
             }
@@ -82,70 +82,65 @@ class MainViewModel {
      * 暂离挂机心跳执行逻辑
      */
     private suspend fun onSuspendHeartBeat() {
-        val desktopCapture = robot.createDesktopCapture()
+        val wowWindow = findWindow("魔兽世界")
+        if (wowWindow == null) {
+            log("未找到【魔兽世界】窗口")
+            return
+        }
+
+        delay(2000)
+
+        wowWindow.activeWindow()
+
+        val desktopCapture = robot.createWindowCapture(wowWindow)
 
         // OCR
         val engine = InferenceEngine.getInstance(Model.ONNX_PPOCR_V4)
         val result = engine.runOcr(desktopCapture.absolutePath, ocrParamConfig)
         val textBlocks = result.textBlocks
 
-        // 进入魔兽世界
+        // 进入魔兽世界}
         textBlocks.findTextBlock("进入魔兽世界")?.let { textBlock ->
             log("检测到进入游戏界面，自动点击【进入魔兽世界】")
             robot.click(textBlock)
         }
 
         // 重新连接
-        textBlocks.findTextBlock("重新连接")?.let { textBlock ->
+        if (textBlocks.hasAllTextBlocks("魔兽世界", "重新连接")) {
             if (textBlocks.findTextBlock("断开连接") != null || textBlocks.findTextBlock("服务器断开") != null) {
                 log("断开连接弹窗，自动点击【确定】")
                 robot.click(textBlocks.findTextBlock("确定"))
+                return
             }
 
             if (textBlocks.findTextBlock("无法重新连接") != null) {
                 log("无法重新连接弹窗，自动点击【确定】")
                 robot.click(textBlocks.findTextBlock("确定"))
-                return@let
+                return
             }
 
             log("重新连接界面，自动点击【重新连接】")
-            robot.click(textBlock)
-        }
-
-        // 登录状态丢失界面
-        if (textBlocks.findTextBlock("登录") != null || textBlocks.findTextBlock("密码") != null) {
-            log("登录状态丢失，自动点击【退出】")
-            robot.click(textBlocks.findTextBlock("退出"))
-
-            delay(2000)
-
-            findWindow("战网").maxWindow()
-            findWindow("战网").activeWindow()
+            robot.click(textBlocks.findTextBlock("重新连接"))
         }
 
         // 排队界面
-        textBlocks.findTextBlock("队列位置")?.let {
-            log("排队中...")
+        if (textBlocks.hasAllTextBlocks("魔兽世界", "队列位置", "预计时间")) {
+            log(
+                buildString {
+                    append(textBlocks.findTextBlock("队列位置")?.text)
+                    append("，")
+                    append(textBlocks.findTextBlock("预计时间")?.text)
+                    append("，排队中...")
+                }
+            )
         }
 
         // 服务器列页面
-        textBlocks.findTextBlock("吉安娜")?.let { textBlock ->
-            if (textBlocks.findTextBlock("队列位置") == null) {
-                log("自动进入目标服务器【吉安娜】")
+        if (textBlocks.hasAllTextBlocks("服务器名称", "吉安娜")) {
+            log("自动进入目标服务器【吉安娜】")
 
-                robot.click(textBlock)
-                robot.click(textBlock)
-            }
-        }
-
-        // 自动重新启动游戏
-        textBlocks.findTextBlock("进入游戏")?.let { textBlock ->
-            log("自动从战网客户端重新启动游戏")
-
-            robot.click(textBlock)
-            robot.click(textBlock)
-
-            delay(5000)
+            robot.click(textBlocks.findTextBlock("吉安娜"))
+            robot.click(textBlocks.findTextBlock("吉安娜"))
         }
     }
 

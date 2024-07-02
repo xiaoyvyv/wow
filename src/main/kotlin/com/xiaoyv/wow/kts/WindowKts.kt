@@ -19,7 +19,8 @@ fun WinDef.HWND?.minWindow() {
 }
 
 fun WinDef.HWND?.activeWindow() {
-    this ?: return
+    User32.INSTANCE.ShowWindow(this, WinUser.SW_RESTORE)
     User32.INSTANCE.SetForegroundWindow(this)
     User32.INSTANCE.SetFocus(this)
+    User32.INSTANCE.UpdateWindow(this)
 }
