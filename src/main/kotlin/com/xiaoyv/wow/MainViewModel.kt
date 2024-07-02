@@ -107,6 +107,7 @@ class MainViewModel {
         delay(2000)
 
         wowWindow.activeWindow()
+        wowWindow.setPosition()
 
         val desktopCapture = robot.createWindowCapture(wowWindow)
 

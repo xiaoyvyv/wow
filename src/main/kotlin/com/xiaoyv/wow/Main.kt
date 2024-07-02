@@ -9,18 +9,21 @@ import androidx.compose.ui.window.WindowPosition
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
 import com.github.kwhat.jnativehook.GlobalScreen
+import com.xiaoyv.wow.kts.dataDirOf
 import com.xiaoyv.wow.listener.KeyCombinationListener
 
 fun main() = application {
-    val windowState = rememberWindowState()
-    windowState.position = WindowPosition(Alignment.Center)
-
     val keyListener = remember { KeyCombinationListener() }
 
     LaunchedEffect(Unit) {
+        System.setProperty("java.io.tmpdir", dataDirOf("tmp").absolutePath)
+
         GlobalScreen.registerNativeHook()
         GlobalScreen.addNativeKeyListener(keyListener)
     }
+
+    val windowState = rememberWindowState()
+    windowState.position = WindowPosition(Alignment.Center)
 
     Window(
         undecorated = false,

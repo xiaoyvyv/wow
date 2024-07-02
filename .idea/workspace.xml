@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0b09ccb7-ddc9-4f9c-a070-dc5dec3de88d" name="Changes" comment="[Feat] 优化更新">
+    <list default="true" id="0b09ccb7-ddc9-4f9c-a070-dc5dec3de88d" name="Changes" comment="[Feat] 快捷键修复">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/xiaoyv/wow/MainContent.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/xiaoyv/wow/MainContent.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/xiaoyv/wow/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/xiaoyv/wow/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/xiaoyv/wow/MainViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/xiaoyv/wow/MainViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/xiaoyv/wow/kts/WindowKts.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/xiaoyv/wow/kts/WindowKts.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,41 +90,42 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Gradle.Build WowTool.executor": "Run",
-    "Gradle.Build wow.executor": "Run",
-    "Gradle.WowTool [run].executor": "Run",
-    "Gradle.wow [packageMsi].executor": "Run",
-    "Gradle.wow [packageReleaseMsi].executor": "Run",
-    "Kotlin.DesktopApp.executor": "Run",
-    "Kotlin.MainKt.executor": "Run",
-    "Kotlin.WindowScreenshot.executor": "Run",
-    "Kotlin.WindowScreenshotKt.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "tool",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/why/IdeaProjects/WowTool",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "http.proxy",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Gradle.Build WowTool.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Build wow.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.WowTool [run].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.wow [packageDistributionForCurrentOS].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.wow [packageMsi].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.wow [packageReleaseMsi].executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.DesktopApp.executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.MainKt.executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.WindowScreenshot.executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.WindowScreenshotKt.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;tool&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/why/IdeaProjects/WowTool&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.appearance&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "kotlin-gradle-user-dirs": [
-      "C:\\Users\\why\\.gradle"
+  &quot;keyToStringList&quot;: {
+    &quot;kotlin-gradle-user-dirs&quot;: [
+      &quot;C:\\Users\\why\\.gradle&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunAnythingCache">
     <option name="myCommands">
       <command value="gradle run" />
@@ -139,7 +142,7 @@
       <option name="showConsole" value="true" />
       <method v="2" />
     </configuration>
-    <configuration name="wow [packageMsi]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="wow [packageDistributionForCurrentOS]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -150,7 +153,7 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value="packageMsi" />
+            <option value="packageDistributionForCurrentOS" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -161,18 +164,18 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="wow [packageReleaseMsi]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="wow [packageMsi]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
+        <option name="scriptParameters" value="" />
         <option name="taskDescriptions">
           <list />
         </option>
         <option name="taskNames">
           <list>
-            <option value="packageReleaseMsi" />
+            <option value="packageMsi" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -191,25 +194,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="WindowScreenshotKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.xiaoyv.wow.kts.WindowScreenshotKt" />
-      <module name="WowTool.main" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
+      <item itemvalue="Gradle.wow [packageDistributionForCurrentOS]" />
       <item itemvalue="Gradle.wow [packageMsi]" />
-      <item itemvalue="Gradle.wow [packageReleaseMsi]" />
-      <item itemvalue="Kotlin.WindowScreenshotKt" />
       <item itemvalue="Kotlin.DesktopApp" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Kotlin.DesktopApp" />
-        <item itemvalue="Kotlin.WindowScreenshotKt" />
         <item itemvalue="Gradle.wow [packageMsi]" />
-        <item itemvalue="Gradle.wow [packageReleaseMsi]" />
+        <item itemvalue="Gradle.wow [packageDistributionForCurrentOS]" />
       </list>
     </recent_temporary>
   </component>
@@ -233,7 +227,9 @@
       <workItem from="1719910831288" duration="56000" />
       <workItem from="1719910895058" duration="4805000" />
       <workItem from="1719925879421" duration="2974000" />
-      <workItem from="1719929247765" duration="6657000" />
+      <workItem from="1719929247765" duration="6828000" />
+      <workItem from="1719936164714" duration="2486000" />
+      <workItem from="1719940071977" duration="353000" />
     </task>
     <task id="LOCAL-00001" summary="[Feat] 使用 OCR 方式">
       <option name="closed" value="true" />
@@ -283,7 +279,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719935735449</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="[Feat] 快捷键修复">
+      <option name="closed" value="true" />
+      <created>1719936019430</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1719936019430</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -307,6 +311,53 @@
     <MESSAGE value="[Feat] 提交" />
     <MESSAGE value="[Feat] 快捷键" />
     <MESSAGE value="[Feat] 优化更新" />
-    <option name="LAST_COMMIT_MESSAGE" value="[Feat] 优化更新" />
+    <MESSAGE value="[Feat] 快捷键修复" />
+    <option name="LAST_COMMIT_MESSAGE" value="[Feat] 快捷键修复" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.github.mymonstercat/rapidocr/0.0.7/6bcb15a120495be71af1832e1a40e42339d29fb6/rapidocr-0.0.7.jar!/io/github/mymonstercat/ocr/InferenceEngine.class</url>
+          <line>73</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.github.mymonstercat/rapidocr/0.0.7/6bcb15a120495be71af1832e1a40e42339d29fb6/rapidocr-0.0.7.jar!/io/github/mymonstercat/ocr/InferenceEngine.class</url>
+          <line>74</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.github.mymonstercat/rapidocr/0.0.7/6bcb15a120495be71af1832e1a40e42339d29fb6/rapidocr-0.0.7.jar!/io/github/mymonstercat/ocr/InferenceEngine.class</url>
+          <line>76</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.github.mymonstercat/rapidocr/0.0.7/6bcb15a120495be71af1832e1a40e42339d29fb6/rapidocr-0.0.7.jar!/io/github/mymonstercat/ocr/InferenceEngine.class</url>
+          <line>80</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.github.mymonstercat/rapidocr/0.0.7/6bcb15a120495be71af1832e1a40e42339d29fb6/rapidocr-0.0.7.jar!/io/github/mymonstercat/ocr/LoadUtil.class</url>
+          <line>23</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.github.mymonstercat/rapidocr/0.0.7/6bcb15a120495be71af1832e1a40e42339d29fb6/rapidocr-0.0.7.jar!/io/github/mymonstercat/ocr/LoadUtil.class</url>
+          <line>66</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.github.mymonstercat/rapidocr/0.0.7/6bcb15a120495be71af1832e1a40e42339d29fb6/rapidocr-0.0.7.jar!/io/github/mymonstercat/ocr/InferenceEngine.class</url>
+          <line>81</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.github.mymonstercat/rapidocr/0.0.7/6bcb15a120495be71af1832e1a40e42339d29fb6/rapidocr-0.0.7.jar!/io/github/mymonstercat/ocr/InferenceEngine.class</url>
+          <line>92</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

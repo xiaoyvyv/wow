@@ -24,3 +24,6 @@ fun WinDef.HWND?.activeWindow() {
     User32.INSTANCE.SetFocus(this)
     User32.INSTANCE.UpdateWindow(this)
 }
+fun WinDef.HWND?.setPosition() {
+    User32.INSTANCE.SetWindowPos(this, null, 0, 0, 0, 0, WinUser.SWP_NOSIZE or WinUser.SWP_NOZORDER)
+}
