@@ -2,10 +2,7 @@ package com.xiaoyv.wow
 
 import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.verticalScroll
@@ -41,6 +38,7 @@ fun MainContent(keyListener: KeyCombinationListener) {
     val suspendState by viewModel.suspendState.collectAsState()
     val suspendTime by viewModel.suspendTime.collectAsState()
     val logText by viewModel.logText.collectAsState()
+    val targetServer by viewModel.targetServer.collectAsState()
 
     val logScrollState = rememberScrollState()
 
@@ -67,8 +65,6 @@ fun MainContent(keyListener: KeyCombinationListener) {
 
                 NativeKeyEvent.VC_3 -> {
                     Toolkit.getDefaultToolkit().beep()
-
-//                    findWindow("战网").maxWindow()
                     findWindow("魔兽世界").maxWindow()
                 }
 
@@ -90,18 +86,24 @@ fun MainContent(keyListener: KeyCombinationListener) {
             topBar = { TopAppBar(title = { Text("巫妖王挂机工具（小玉出品）") }) }
         ) {
             Column(modifier = Modifier.fillMaxSize()) {
-                Button(
-                    modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp),
-                    colors = ButtonDefaults.buttonColors(
-                        backgroundColor = if (suspendState) Color.Red.copy(red = 0.75f) else Color.Green.copy(green = 0.75f),
-                        contentColor = Color.White
-                    ),
-                    onClick = { viewModel.toggleSuspendState() }
-                ) {
-                    if (suspendState) {
-                        Text("关闭暂离挂机（${suspendTime.formatHMS()}）")
-                    } else {
-                        Text("开启暂离挂机", fontWeight = FontWeight.Bold)
+                Row {
+                    Button(
+                        modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp),
+                        colors = ButtonDefaults.buttonColors(
+                            backgroundColor = if (suspendState) Color.Red.copy(red = 0.75f) else Color.Green.copy(green = 0.75f),
+                            contentColor = Color.White
+                        ),
+                        onClick = { viewModel.toggleSuspendState() }
+                    ) {
+                        if (suspendState) {
+                            Text("关闭暂离挂机（${suspendTime.formatHMS()}）")
+                        } else {
+                            Text("开启暂离挂机", fontWeight = FontWeight.Bold)
+                        }
+                    }
+
+                    ServerSelector(suspendState, targetServer) {
+                        viewModel.changeServer(it)
                     }
                 }
 
@@ -126,6 +128,43 @@ fun MainContent(keyListener: KeyCombinationListener) {
 
                     }
                 )
+            }
+        }
+    }
+}
+
+@Composable
+fun ServerSelector(
+    suspendState: Boolean,
+    targetServer: String,
+    onSelect: (String) -> Unit,
+) {
+    Box {
+        var expanded by remember { mutableStateOf(false) }
+        val options = listOf("吉安娜", "死亡猎手")
+
+        Button(
+            enabled = !suspendState,
+            modifier = Modifier.padding(vertical = 8.dp),
+            onClick = { expanded = expanded.not() }
+        ) {
+            Text(text = "服务器选择【$targetServer】")
+        }
+
+        DropdownMenu(
+            expanded = expanded,
+            onDismissRequest = { expanded = false },
+            modifier = Modifier.wrapContentWidth(),
+        ) {
+            options.forEach { option ->
+                DropdownMenuItem(
+                    onClick = {
+                        expanded = false
+                        onSelect(option)
+                    }
+                ) {
+                    Text(option)
+                }
             }
         }
     }

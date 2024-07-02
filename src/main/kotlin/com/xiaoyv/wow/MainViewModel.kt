@@ -23,6 +23,9 @@ class MainViewModel {
     private val _logText = MutableStateFlow("输出日志")
     val logText = _logText.asStateFlow()
 
+    private val _targetServer = MutableStateFlow("吉安娜")
+    val targetServer = _targetServer.asStateFlow()
+
     private var _heartBeatJob: Job? = null
 
     /**
@@ -38,6 +41,12 @@ class MainViewModel {
         isMostAngle = true
     }
 
+    private val errorHandler = CoroutineExceptionHandler { _, throwable ->
+        if (throwable !is CancellationException) {
+            log(throwable.stackTraceToString())
+        }
+    }
+
     /**
      * 开关暂离状态
      */
@@ -49,12 +58,18 @@ class MainViewModel {
         _heartBeatJob = null
         _logText.value = "输出日志"
 
+        if (findWindow("魔兽世界") == null) {
+            _suspendState.value = false
+            log("没有找到游戏窗口，请检查是否启动了【魔兽世界】")
+            return
+        }
+
         _suspendState.value = !_suspendState.value
 
         // 开启
         if (_suspendState.value) {
             _suspendTime.value = 0
-            _suspendTimeJob = GlobalScope.launch {
+            _suspendTimeJob = GlobalScope.launch(Dispatchers.Default + errorHandler) {
                 withContext(Dispatchers.IO) {
                     while (isActive) {
                         delay(1000)
@@ -63,13 +78,14 @@ class MainViewModel {
                 }
             }
 
-            _heartBeatJob = GlobalScope.launch {
+            _heartBeatJob = GlobalScope.launch(Dispatchers.Default + errorHandler) {
                 withContext(Dispatchers.IO) {
                     while (isActive) {
                         runCatching { onSuspendHeartBeat() }
-                            .onFailure {
-                                it.printStackTrace()
-                                log(it.stackTraceToString())
+                            .onFailure { throwable ->
+                                if (throwable !is CancellationException) {
+                                    log(throwable.stackTraceToString())
+                                }
                             }
                     }
                 }
@@ -136,11 +152,11 @@ class MainViewModel {
         }
 
         // 服务器列页面
-        if (textBlocks.hasAllTextBlocks("服务器名称", "吉安娜")) {
-            log("自动进入目标服务器【吉安娜】")
+        if (textBlocks.hasAllTextBlocks("服务器名称", targetServer.value)) {
+            log("自动进入目标服务器【${targetServer.value}】")
 
-            robot.click(textBlocks.findTextBlock("吉安娜"))
-            robot.click(textBlocks.findTextBlock("吉安娜"))
+            robot.click(textBlocks.findTextBlock(targetServer.value))
+            robot.click(textBlocks.findTextBlock(targetServer.value))
         }
     }
 
@@ -150,5 +166,9 @@ class MainViewModel {
 
     fun screenShots() {
         thread { robot.createDesktopCapture() }
+    }
+
+    fun changeServer(option: String) {
+        _targetServer.value = option
     }
 }
