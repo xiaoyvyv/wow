@@ -130,10 +130,12 @@ class MainViewModel {
 
         // 服务器列页面
         textBlocks.findTextBlock("吉安娜")?.let { textBlock ->
-            log("自动进入目标服务器【吉安娜】")
+            if (textBlocks.findTextBlock("队列位置") == null) {
+                log("自动进入目标服务器【吉安娜】")
 
-            robot.click(textBlock)
-            robot.click(textBlock)
+                robot.click(textBlock)
+                robot.click(textBlock)
+            }
         }
 
         // 自动重新启动游戏

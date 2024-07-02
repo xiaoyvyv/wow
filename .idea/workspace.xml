@@ -4,27 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0b09ccb7-ddc9-4f9c-a070-dc5dec3de88d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/xiaoyv/wow/kts/OcrKt.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/kotlinc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="0b09ccb7-ddc9-4f9c-a070-dc5dec3de88d" name="Changes" comment="[Feat] 点击文字块">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/xiaoyv/wow/MainViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/xiaoyv/wow/MainViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/xiaoyv/wow/kts/ImageKt.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/xiaoyv/wow/kts/ImageKt.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/xiaoyv/wow/kts/LongKt.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/xiaoyv/wow/kts/LongKt.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/xiaoyv/wow/kts/RobotKt.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/xiaoyv/wow/kts/RobotKt.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/images/character/disconnect.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/images/character/enter-game-btn.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/images/character/exit-btn.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/images/character/login-form.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/images/character/queue.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/images/character/reconnect-btn.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/images/character/reconnect-error.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/images/character/server-target.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/images/character/start-battle-game.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,6 +46,12 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
+      </GitPushTagMode>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectColorInfo"><![CDATA[{
@@ -144,11 +132,33 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1719832400666</updated>
-      <workItem from="1719832401855" duration="2533000" />
+      <workItem from="1719832401855" duration="6791000" />
     </task>
+    <task id="LOCAL-00001" summary="[Feat] 使用 OCR 方式">
+      <option name="closed" value="true" />
+      <created>1719834976870</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1719834976870</updated>
+    </task>
+    <task id="LOCAL-00002" summary="[Feat] 点击文字块">
+      <option name="closed" value="true" />
+      <created>1719835200781</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1719835200781</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="[Feat] 使用 OCR 方式" />
+    <MESSAGE value="[Feat] 点击文字块" />
+    <option name="LAST_COMMIT_MESSAGE" value="[Feat] 点击文字块" />
   </component>
 </project>
