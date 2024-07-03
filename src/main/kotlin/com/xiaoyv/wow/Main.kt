@@ -27,7 +27,7 @@ fun main() = application {
 
     Window(
         undecorated = false,
-        title = "巫妖王挂机工具",
+        title = "巫妖王挂机工具（QQ: 1223414335）",
         icon = painterResource("images/ic_logo.png"),
         state = windowState,
         onCloseRequest = ::exitApplication,

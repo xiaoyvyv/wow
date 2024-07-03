@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0b09ccb7-ddc9-4f9c-a070-dc5dec3de88d" name="Changes" comment="[Feat] 修复">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/xiaoyv/wow/MainViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/xiaoyv/wow/MainViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/xiaoyv/wow/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/xiaoyv/wow/Main.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +104,7 @@
     &quot;Kotlin.WindowScreenshotKt.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;tool&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/why/IdeaProjects/WowTool&quot;,
@@ -120,7 +121,7 @@
   },
   &quot;keyToStringList&quot;: {
     &quot;kotlin-gradle-user-dirs&quot;: [
-      &quot;C:\\Users\\why\\.gradle&quot;
+      &quot;/Users/why/.gradle&quot;
     ]
   }
 }</component>
@@ -130,16 +131,6 @@
     </option>
   </component>
   <component name="RunManager" selected="Kotlin.DesktopApp">
-    <configuration default="true" type="lua.app" factoryName="Lua Application">
-      <option name="program" value="/opt/homebrew/bin/lua" />
-      <option name="file" value="" />
-      <option name="workingDir" value="$PROJECT_DIR$/src/main/kotlin" />
-      <option name="debuggerType" value="2" />
-      <option name="params" value="" />
-      <option name="charset" value="UTF-8" />
-      <option name="showConsole" value="true" />
-      <method v="2" />
-    </configuration>
     <configuration name="wow [packageDistributionForCurrentOS]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -192,6 +183,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="lua.app" factoryName="Lua Application">
+      <option name="program" value="/opt/homebrew/bin/lua" />
+      <option name="file" value="" />
+      <option name="workingDir" value="$PROJECT_DIR$/src/main/kotlin" />
+      <option name="debuggerType" value="2" />
+      <option name="params" value="" />
+      <option name="charset" value="UTF-8" />
+      <option name="showConsole" value="true" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Gradle.wow [packageDistributionForCurrentOS]" />
       <item itemvalue="Gradle.wow [packageMsi]" />
@@ -208,8 +209,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.18034.62" />
-        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.18034.62" />
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17011.79" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17011.79" />
       </set>
     </attachedChunks>
   </component>
@@ -342,39 +343,9 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.github.mymonstercat/rapidocr/0.0.7/6bcb15a120495be71af1832e1a40e42339d29fb6/rapidocr-0.0.7.jar!/io/github/mymonstercat/ocr/InferenceEngine.class</url>
-          <line>73</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.github.mymonstercat/rapidocr/0.0.7/6bcb15a120495be71af1832e1a40e42339d29fb6/rapidocr-0.0.7.jar!/io/github/mymonstercat/ocr/InferenceEngine.class</url>
-          <line>74</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.github.mymonstercat/rapidocr/0.0.7/6bcb15a120495be71af1832e1a40e42339d29fb6/rapidocr-0.0.7.jar!/io/github/mymonstercat/ocr/InferenceEngine.class</url>
-          <line>76</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.github.mymonstercat/rapidocr/0.0.7/6bcb15a120495be71af1832e1a40e42339d29fb6/rapidocr-0.0.7.jar!/io/github/mymonstercat/ocr/InferenceEngine.class</url>
-          <line>80</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.github.mymonstercat/rapidocr/0.0.7/6bcb15a120495be71af1832e1a40e42339d29fb6/rapidocr-0.0.7.jar!/io/github/mymonstercat/ocr/LoadUtil.class</url>
           <line>23</line>
           <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.github.mymonstercat/rapidocr/0.0.7/6bcb15a120495be71af1832e1a40e42339d29fb6/rapidocr-0.0.7.jar!/io/github/mymonstercat/ocr/LoadUtil.class</url>
-          <line>66</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.github.mymonstercat/rapidocr/0.0.7/6bcb15a120495be71af1832e1a40e42339d29fb6/rapidocr-0.0.7.jar!/io/github/mymonstercat/ocr/InferenceEngine.class</url>
-          <line>81</line>
-          <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.github.mymonstercat/rapidocr/0.0.7/6bcb15a120495be71af1832e1a40e42339d29fb6/rapidocr-0.0.7.jar!/io/github/mymonstercat/ocr/InferenceEngine.class</url>
