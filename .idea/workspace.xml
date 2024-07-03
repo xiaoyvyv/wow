@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0b09ccb7-ddc9-4f9c-a070-dc5dec3de88d" name="Changes" comment="[Feat] 快捷键修复">
+    <list default="true" id="0b09ccb7-ddc9-4f9c-a070-dc5dec3de88d" name="Changes" comment="[Feat] 修复">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/xiaoyv/wow/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/xiaoyv/wow/Main.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/xiaoyv/wow/MainViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/xiaoyv/wow/MainViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/xiaoyv/wow/kts/WindowKts.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/xiaoyv/wow/kts/WindowKts.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,7 +129,7 @@
       <command value="gradle run" />
     </option>
   </component>
-  <component name="RunManager" selected="Gradle.wow [packageMsi]">
+  <component name="RunManager" selected="Kotlin.DesktopApp">
     <configuration default="true" type="lua.app" factoryName="Lua Application">
       <option name="program" value="/opt/homebrew/bin/lua" />
       <option name="file" value="" />
@@ -201,8 +199,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.wow [packageMsi]" />
         <item itemvalue="Kotlin.DesktopApp" />
+        <item itemvalue="Gradle.wow [packageMsi]" />
         <item itemvalue="Gradle.wow [packageDistributionForCurrentOS]" />
       </list>
     </recent_temporary>
@@ -229,7 +227,8 @@
       <workItem from="1719925879421" duration="2974000" />
       <workItem from="1719929247765" duration="6828000" />
       <workItem from="1719936164714" duration="2486000" />
-      <workItem from="1719940071977" duration="353000" />
+      <workItem from="1719940071977" duration="704000" />
+      <workItem from="1719965837756" duration="887000" />
     </task>
     <task id="LOCAL-00001" summary="[Feat] 使用 OCR 方式">
       <option name="closed" value="true" />
@@ -287,7 +286,31 @@
       <option name="project" value="LOCAL" />
       <updated>1719936019430</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="[Feat] 修复">
+      <option name="closed" value="true" />
+      <created>1719940451698</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1719940451698</updated>
+    </task>
+    <task id="LOCAL-00009" summary="[Feat] 修复">
+      <option name="closed" value="true" />
+      <created>1719940473158</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1719940473158</updated>
+    </task>
+    <task id="LOCAL-00010" summary="[Feat] 修复">
+      <option name="closed" value="true" />
+      <created>1719940635583</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1719940635583</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -312,7 +335,8 @@
     <MESSAGE value="[Feat] 快捷键" />
     <MESSAGE value="[Feat] 优化更新" />
     <MESSAGE value="[Feat] 快捷键修复" />
-    <option name="LAST_COMMIT_MESSAGE" value="[Feat] 快捷键修复" />
+    <MESSAGE value="[Feat] 修复" />
+    <option name="LAST_COMMIT_MESSAGE" value="[Feat] 修复" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

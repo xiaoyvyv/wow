@@ -2,6 +2,7 @@
 
 package com.xiaoyv.wow
 
+import com.sun.jna.platform.win32.WinDef
 import com.xiaoyv.wow.kts.*
 import io.github.mymonstercat.Model
 import io.github.mymonstercat.ocr.InferenceEngine
@@ -58,12 +59,6 @@ class MainViewModel {
         _heartBeatJob = null
         _logText.value = "输出日志"
 
-        if (findWindow("魔兽世界") == null) {
-            _suspendState.value = false
-            log("没有找到游戏窗口，请检查是否启动了【魔兽世界】")
-            return
-        }
-
         _suspendState.value = !_suspendState.value
 
         // 开启
@@ -101,6 +96,13 @@ class MainViewModel {
         val wowWindow = findWindow("魔兽世界")
         if (wowWindow == null) {
             log("未找到【魔兽世界】窗口")
+
+            // 重新启动游戏
+            val battleWindow = findWindow("战网")
+            if (battleWindow != null) {
+                log("发现战网窗口，重新启动游戏")
+                restartGame(battleWindow)
+            }
             return
         }
 
@@ -140,6 +142,12 @@ class MainViewModel {
             robot.click(textBlocks.findTextBlock("重新连接"))
         }
 
+        // 登录信息失效
+        if (textBlocks.hasAllTextBlocks("登录", "密码")) {
+            robot.click(textBlocks.findTextBlock("退出"))
+            delay(3000)
+        }
+
         // 排队界面
         if (textBlocks.hasAllTextBlocks("魔兽世界", "队列位置", "预计时间")) {
             log(
@@ -159,6 +167,25 @@ class MainViewModel {
             robot.click(textBlocks.findTextBlock(targetServer.value))
             robot.click(textBlocks.findTextBlock(targetServer.value))
         }
+    }
+
+    /**
+     * 重启游戏
+     */
+    private suspend fun restartGame(battleWindow: WinDef.HWND) {
+        battleWindow.activeWindow()
+        battleWindow.setPosition()
+        delay(1000)
+        val capture = robot.createWindowCapture(battleWindow)
+
+        val engine = InferenceEngine.getInstance(Model.ONNX_PPOCR_V4)
+        val result = engine.runOcr(capture.absolutePath, ocrParamConfig)
+        val textBlocks = result.textBlocks
+
+        robot.click(textBlocks.findTextBlock("进入游戏"))
+        robot.click(textBlocks.findTextBlock("进入游戏"))
+
+        delay(5000)
     }
 
     private fun log(string: String) {
