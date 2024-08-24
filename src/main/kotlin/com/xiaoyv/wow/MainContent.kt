@@ -39,6 +39,7 @@ fun MainContent(keyListener: KeyCombinationListener) {
     val suspendTime by viewModel.suspendTime.collectAsState()
     val logText by viewModel.logText.collectAsState()
     val targetServer by viewModel.targetServer.collectAsState()
+    val fishState by viewModel.fishState.collectAsState()
 
     val logScrollState = rememberScrollState()
 
@@ -106,6 +107,21 @@ fun MainContent(keyListener: KeyCombinationListener) {
 
                     ServerSelector(suspendState, targetServer) {
                         viewModel.changeServer(it)
+                    }
+
+                    Button(
+                        modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp),
+                        colors = ButtonDefaults.buttonColors(
+                            backgroundColor = if (fishState) Color.Red.copy(red = 0.75f) else Color.Green.copy(green = 0.75f),
+                            contentColor = Color.White
+                        ),
+                        onClick = { viewModel.toggleFish() }
+                    ) {
+                        if (fishState) {
+                            Text("关闭钓鱼")
+                        } else {
+                            Text("开启钓鱼", fontWeight = FontWeight.Bold)
+                        }
                     }
                 }
 

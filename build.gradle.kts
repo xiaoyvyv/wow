@@ -1,7 +1,6 @@
 @file:Suppress("SpellCheckingInspection")
 
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
-import org.jetbrains.kotlin.config.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -20,9 +19,10 @@ java {
 
 allprojects {
     tasks.withType<KotlinCompile>().configureEach {
-        kotlinOptions {
-            jvmTarget = "1.8"
+        compilerOptions {
+            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_1_8)
         }
+
     }
 }
 
@@ -45,6 +45,7 @@ dependencies {
     implementation("com.github.kwhat:jnativehook:2.2.1")
     implementation("org.jsoup:jsoup:1.15.3")
     implementation("net.java.dev.jna:jna-platform:5.14.0")
+    implementation("com.github.kokorin.jaffree:jaffree:2023.09.10")
 
     implementation("io.github.mymonstercat:rapidocr:+")
     implementation("io.github.mymonstercat:rapidocr-onnx-windows-x86_64:+")

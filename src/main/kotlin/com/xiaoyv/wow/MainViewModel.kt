@@ -2,6 +2,8 @@
 
 package com.xiaoyv.wow
 
+import com.github.kokorin.jaffree.LogLevel
+import com.github.kokorin.jaffree.ffmpeg.FFmpeg
 import com.sun.jna.platform.win32.WinDef
 import com.xiaoyv.wow.kts.*
 import io.github.mymonstercat.Model
@@ -10,8 +12,14 @@ import io.github.mymonstercat.ocr.config.ParamConfig
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import tool.Debounce
 import java.awt.Robot
+import java.awt.event.KeyEvent
+import java.util.*
 import kotlin.concurrent.thread
+import kotlin.math.pow
+import kotlin.random.Random
+
 
 class MainViewModel {
     private val _suspendState = MutableStateFlow(false)
@@ -27,7 +35,14 @@ class MainViewModel {
     private val _targetServer = MutableStateFlow("吉安娜")
     val targetServer = _targetServer.asStateFlow()
 
+    private val _fishState = MutableStateFlow(false)
+    val fishState = _fishState.asStateFlow()
+
     private var _heartBeatJob: Job? = null
+    private var _fishJob: Job? = null
+
+    private val debounce = Debounce(2000)
+    private val debounce2 = Debounce(2000)
 
     /**
      * Robot 类
@@ -199,4 +214,115 @@ class MainViewModel {
     fun changeServer(option: String) {
         _targetServer.value = option
     }
+
+    fun toggleFish() {
+        _fishState.value = !_fishState.value
+
+        _fishJob?.cancel()
+        _fishJob = null
+
+        if (_fishState.value) {
+            _fishJob = GlobalScope.launch(Dispatchers.IO + errorHandler) {
+                val wowWindow = findWindow("魔兽世界").also { delay(1000) }
+                wowWindow.activeWindow()
+                wowWindow.setPosition()
+
+                while (isActive) {
+                    startFishing()
+                    delay(60000)
+                }
+            }
+
+            GlobalScope.launch(Dispatchers.Default + errorHandler) {
+                autoFishing {
+                    robot.keyPress(KeyEvent.VK_NUMPAD0)
+                    robot.delay(Random.nextInt(5, 50))
+                    robot.keyRelease(KeyEvent.VK_NUMPAD0)
+                    robot.delay(Random.nextInt(5, 50))
+
+                    startFishing()
+                }
+            }
+        }
+    }
+
+    private fun startFishing() {
+        debounce2.debounce {
+            robot.keyPress(KeyEvent.VK_EQUALS)
+            robot.delay(Random.nextInt(5, 50))
+            robot.keyRelease(KeyEvent.VK_EQUALS)
+        }
+
+//        log("钓鱼%d次".format())
+    }
+
+    private suspend fun autoFishing(onFished: () -> Unit) {
+
+        withContext(Dispatchers.IO) {
+            val tmpList = Collections.synchronizedList(arrayListOf<Double>())
+
+            FFmpeg.atPath()
+                .addArguments("-f", "dshow")
+                .addArguments("-i", "audio=\"virtual-audio-capturer\"")
+                .addArguments("-filter_complex", "ebur128=peak=true")
+                .addArguments("-f", "null")
+                .addArgument("/dev/null")
+                .setLogLevel(LogLevel.INFO)
+                .setOutputListener {
+                    if (it.contains("ebur128")) {
+                        val momentary = "M:(.*?)S:".toRegex(RegexOption.IGNORE_CASE)
+                            .find(it)?.groups?.get(1)?.value?.trim()?.toDoubleOrNull() ?: 0.0
+
+                        if (tmpList.size >= 5) tmpList.removeAt(0)
+                        tmpList.add(momentary)
+
+                        if (tmpList.size == 5) {
+                            val average = tmpList.average()
+                            if (average > -18) {
+                                debounce.debounce {
+                                    log("大鱼上钩啦 ${average}!")
+                                    onFished()
+                                }
+                            }
+                        }
+                    }
+
+                    if (!_fishState.value) throw IllegalStateException("停止钓鱼")
+                }
+                .execute()
+        }
+
+
+        /**
+         * [Parsed_ebur128_0 @ 000002a893fea240] t: 189.900979 TARGET:-23 LUFS    M:  -8.1 S:  -9.1     I: -12.9 LUFS       LRA:  19.8 LU  FTPK:  -3.4  -2.1 dBFS  TPK:  -0.2  -0.1 dBFS
+         *
+         *
+         * Integrated loudness (整合声压)：表示音频文件整体的声压级别。
+         * Momentary loudness (瞬时声压)：表示短时间（约400ms）内的声压级别。
+         * Short-term loudness (短期声压)：表示中时间（约3秒）内的声压级别。
+         * LRA (Loudness Range)：表示音频文件的声压范围。
+         * True peak (真实峰值)：表示音频信号的最大峰值。
+         * LUFS (Loudness Units relative to Full Scale)是一种测量音频响度的单位，特别用于广播和音频流媒体的响度标准。它由国际电信联盟（ITU）和欧洲广播联盟（EBU）提出，用于衡量感知响度，而不是简单的信号强度。
+         * dBFS (decibels relative to Full Scale)是一种测量音频信号电平的单位，表示相对于数字音频系统中的最大可表示电平（满刻度，Full Scale）的分贝值。
+         *
+         */
+        // ffmpeg -f dshow -i audio="virtual-audio-capturer" -filter_complex "showwavespic=s=640x120" -frames:v 1 output.png
+        // ffmpeg -v debug -f dshow -i audio="virtual-audio-capturer" -af "volumedetect" -t 2  -f null -
+        // ffmpeg -f dshow -i audio="virtual-audio-capturer" -filter_complex ebur128=peak=true -f null /dev/null
+    }
+
+    private fun dbToLinear(dbValue: Double): Double {
+        return 10.0.pow(dbValue / 20.0)
+    }
 }
+
+
+
+
+
+
+
+
+
+
+

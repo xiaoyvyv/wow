@@ -4,10 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0b09ccb7-ddc9-4f9c-a070-dc5dec3de88d" name="Changes" comment="[Feat] 修复">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+    <list default="true" id="0b09ccb7-ddc9-4f9c-a070-dc5dec3de88d" name="Changes" comment="[Feat] 自动重启功能">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tool/Debounce.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2024_7_2_13_58_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2024_7_2_13_58__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/xiaoyv/wow/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/xiaoyv/wow/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/xiaoyv/wow/MainContent.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/xiaoyv/wow/MainContent.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/xiaoyv/wow/MainViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/xiaoyv/wow/MainViewModel.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +59,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Kotlin File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -95,6 +101,8 @@
     &quot;Gradle.Build WowTool.executor&quot;: &quot;Run&quot;,
     &quot;Gradle.Build wow.executor&quot;: &quot;Run&quot;,
     &quot;Gradle.WowTool [run].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.wow [:AudioCapture.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.wow [:VideoRecord.main()].executor&quot;: &quot;Run&quot;,
     &quot;Gradle.wow [packageDistributionForCurrentOS].executor&quot;: &quot;Run&quot;,
     &quot;Gradle.wow [packageMsi].executor&quot;: &quot;Run&quot;,
     &quot;Gradle.wow [packageReleaseMsi].executor&quot;: &quot;Run&quot;,
@@ -103,11 +111,12 @@
     &quot;Kotlin.WindowScreenshot.executor&quot;: &quot;Run&quot;,
     &quot;Kotlin.WindowScreenshotKt.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;tool&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/why/IdeaProjects/WowTool&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/why/IdeaProjects/wow/libs&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -116,21 +125,68 @@
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.appearance&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
     &quot;kotlin-gradle-user-dirs&quot;: [
-      &quot;/Users/why/.gradle&quot;
+      &quot;C:\\Users\\why\\.gradle&quot;
     ]
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\why\IdeaProjects\wow\libs" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\why\IdeaProjects\wow\src\main\kotlin\com\xiaoyv\wow" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+  </component>
   <component name="RunAnythingCache">
     <option name="myCommands">
       <command value="gradle run" />
     </option>
   </component>
   <component name="RunManager" selected="Kotlin.DesktopApp">
+    <configuration default="true" type="lua.app" factoryName="Lua Application">
+      <option name="program" value="/opt/homebrew/bin/lua" />
+      <option name="file" value="" />
+      <option name="workingDir" value="$PROJECT_DIR$/src/main/kotlin" />
+      <option name="debuggerType" value="2" />
+      <option name="params" value="" />
+      <option name="charset" value="UTF-8" />
+      <option name="showConsole" value="true" />
+      <method v="2" />
+    </configuration>
+    <configuration name="AudioCapture" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="audio.AudioCapture" />
+      <module name="WowTool.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="audio.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="VideoRecord" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="audio.VideoRecord" />
+      <module name="WowTool.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="audio.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="wow [packageDistributionForCurrentOS]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -183,17 +239,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="lua.app" factoryName="Lua Application">
-      <option name="program" value="/opt/homebrew/bin/lua" />
-      <option name="file" value="" />
-      <option name="workingDir" value="$PROJECT_DIR$/src/main/kotlin" />
-      <option name="debuggerType" value="2" />
-      <option name="params" value="" />
-      <option name="charset" value="UTF-8" />
-      <option name="showConsole" value="true" />
-      <method v="2" />
-    </configuration>
     <list>
+      <item itemvalue="Application.AudioCapture" />
+      <item itemvalue="Application.VideoRecord" />
       <item itemvalue="Gradle.wow [packageDistributionForCurrentOS]" />
       <item itemvalue="Gradle.wow [packageMsi]" />
       <item itemvalue="Kotlin.DesktopApp" />
@@ -201,6 +249,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Kotlin.DesktopApp" />
+        <item itemvalue="Application.AudioCapture" />
+        <item itemvalue="Application.VideoRecord" />
         <item itemvalue="Gradle.wow [packageMsi]" />
         <item itemvalue="Gradle.wow [packageDistributionForCurrentOS]" />
       </list>
@@ -209,8 +259,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17011.79" />
-        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17011.79" />
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.18034.62" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.18034.62" />
       </set>
     </attachedChunks>
   </component>
@@ -229,7 +279,11 @@
       <workItem from="1719929247765" duration="6828000" />
       <workItem from="1719936164714" duration="2486000" />
       <workItem from="1719940071977" duration="704000" />
-      <workItem from="1719965837756" duration="887000" />
+      <workItem from="1719965837756" duration="1307000" />
+      <workItem from="1724424451817" duration="1022000" />
+      <workItem from="1724425508253" duration="14688000" />
+      <workItem from="1724440599208" duration="9574000" />
+      <workItem from="1724486914360" duration="2281000" />
     </task>
     <task id="LOCAL-00001" summary="[Feat] 使用 OCR 方式">
       <option name="closed" value="true" />
@@ -311,7 +365,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719940635583</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="[Feat] 自动重启功能">
+      <option name="closed" value="true" />
+      <created>1719966886761</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1719966886761</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -337,15 +399,46 @@
     <MESSAGE value="[Feat] 优化更新" />
     <MESSAGE value="[Feat] 快捷键修复" />
     <MESSAGE value="[Feat] 修复" />
-    <option name="LAST_COMMIT_MESSAGE" value="[Feat] 修复" />
+    <MESSAGE value="[Feat] 自动重启功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="[Feat] 自动重启功能" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.github.mymonstercat/rapidocr/0.0.7/6bcb15a120495be71af1832e1a40e42339d29fb6/rapidocr-0.0.7.jar!/io/github/mymonstercat/ocr/InferenceEngine.class</url>
+          <line>73</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.github.mymonstercat/rapidocr/0.0.7/6bcb15a120495be71af1832e1a40e42339d29fb6/rapidocr-0.0.7.jar!/io/github/mymonstercat/ocr/InferenceEngine.class</url>
+          <line>74</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.github.mymonstercat/rapidocr/0.0.7/6bcb15a120495be71af1832e1a40e42339d29fb6/rapidocr-0.0.7.jar!/io/github/mymonstercat/ocr/InferenceEngine.class</url>
+          <line>76</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.github.mymonstercat/rapidocr/0.0.7/6bcb15a120495be71af1832e1a40e42339d29fb6/rapidocr-0.0.7.jar!/io/github/mymonstercat/ocr/InferenceEngine.class</url>
+          <line>80</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
           <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.github.mymonstercat/rapidocr/0.0.7/6bcb15a120495be71af1832e1a40e42339d29fb6/rapidocr-0.0.7.jar!/io/github/mymonstercat/ocr/LoadUtil.class</url>
           <line>23</line>
           <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.github.mymonstercat/rapidocr/0.0.7/6bcb15a120495be71af1832e1a40e42339d29fb6/rapidocr-0.0.7.jar!/io/github/mymonstercat/ocr/LoadUtil.class</url>
+          <line>66</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.github.mymonstercat/rapidocr/0.0.7/6bcb15a120495be71af1832e1a40e42339d29fb6/rapidocr-0.0.7.jar!/io/github/mymonstercat/ocr/InferenceEngine.class</url>
+          <line>81</line>
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.github.mymonstercat/rapidocr/0.0.7/6bcb15a120495be71af1832e1a40e42339d29fb6/rapidocr-0.0.7.jar!/io/github/mymonstercat/ocr/InferenceEngine.class</url>
